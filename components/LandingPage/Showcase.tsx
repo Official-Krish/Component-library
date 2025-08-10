@@ -1,12 +1,12 @@
 "use client";
 import { CARDS } from "@/app/constants";
-import { Keyboard } from "../customComponents/Keyboard";
+import { Keyboard } from "../CustomComponents/Keyboard";
 import { CardStack } from "../ui/card-stack";
 import { CodeBlock } from "../ui/code-block";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function Showcasae () {
+export default function Showcase () {
     const [showCard, setShowCard] = useState(true);
 
     useEffect(() => {

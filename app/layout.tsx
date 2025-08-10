@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import Container from "@/components/Container";
 import Appbar from "@/components/Appbar";
 import { Footer } from "@/components/Footer";
+import { Providers } from "@/lib/providers";
+import SearchModal from "@/components/SearchModal";
 
 const geistSans = Inter({
   variable: "--font-geist-sans",
@@ -26,11 +28,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} antialiased`}
       >
-        <Container>
-          <Appbar />
-          {children}
-          <Footer/>
-        </Container>
+        <Providers>
+          <Container>
+            <Appbar />
+            {children}
+            <Footer/>
+          </Container>
+          <SearchModal />
+        </Providers>
       </body>
     </html>
   );

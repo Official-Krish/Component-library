@@ -1,8 +1,13 @@
+"use client";
 import { FaDiscord, FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
+import { useAppDispatch } from "@/lib/hooks";
+import { openSearchModal } from "@/lib/features/searchModalSlice";
+import { useEffect } from "react";
 
 export default function Appbar() {
+    const dispatch = useAppDispatch();
     const navContent = [
         {
             name: "Componets",
@@ -40,6 +45,19 @@ export default function Appbar() {
 
         }
     ]
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                dispatch(openSearchModal());
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [dispatch]);
+
     return (
         <header className="sticky py-4 bg-neutral-100 border-b border-neutral-200">
             <div className="flex items-center justify-between px-8">
@@ -74,7 +92,8 @@ export default function Appbar() {
                         ))}
                     </div>
                     <button
-                        className="w-66 px-4 py-2 rounded-xl text-neutral-500 font-normal focus:outline-none border border-neutral-300 flex items-center text-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+                        className="w-66 px-4 py-2 rounded-xl text-neutral-500 font-normal focus:outline-none border border-neutral-300 flex items-center text-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] cursor-pointer"
+                        onClick={() => dispatch(openSearchModal())}
                     >
                         <CiSearch className="w-5 h-5 mr-2" />
                         Search Components

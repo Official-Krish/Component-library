@@ -4,8 +4,9 @@ import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
 import { Button } from "../ui/button";
 import { FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { CheckBox } from "../customComponents/checkBox";
+import { CheckBox } from "../CustomComponents/checkBox";
 import { motion } from "motion/react";
+import DynamicScroll from "../CustomComponents/DynamicScroll";
 
 export default function Hero() {
     const icons = [
@@ -35,8 +36,8 @@ export default function Hero() {
             className: "md:col-span-2",   
         },
         {
-            title: "The Digital Revolution",
-            description: "Dive into the transformative power of technology.",
+            title: "Dynamic Scroll",
+            description: "Create smooth scrolling effects with ease.",
             header: <CheckBox />,
             className: "md:col-span-1",
         },
@@ -47,10 +48,10 @@ export default function Hero() {
             className: "md:col-span-1",
         },
         {
-            title: "The Power of Communication",
-            description: "Understand the impact of effective communication in our lives.",
-            header: <CheckBox />,
-            className: "md:col-span-2",
+            title: "Dynamic Scroll",
+            description: "Enhance user experience with dynamic scrolling effects.",
+            header: <DynamicScroll />,
+            className: "md:col-span-2 flex items-center justify-center",
         },
     ];
 
