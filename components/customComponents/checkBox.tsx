@@ -78,7 +78,7 @@ export const CheckBox = () => {
                         </motion.button>
                     ))}
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }

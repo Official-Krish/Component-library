@@ -54,7 +54,7 @@ export const CodeBlock = ({
     : highlightLines;
 
   return (
-    <div className="relative w-[600px] rounded-lg bg-zinc-900 p-4 font-mono text-sm h-[650px] overflow-y-auto">
+    <div className="relative w-[600px] rounded-lg bg-zinc-900 p-4 font-mono text-sm h-[600px] overflow-y-auto">
       <div className="flex flex-col gap-2">
         {tabsExist && (
           <div className="flex  overflow-x-auto">

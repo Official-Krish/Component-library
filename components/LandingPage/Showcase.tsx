@@ -1,7 +1,21 @@
+"use client";
+import { CARDS } from "@/app/constants";
 import { Keyboard } from "../customComponents/Keyboard";
+import { CardStack } from "../ui/card-stack";
 import { CodeBlock } from "../ui/code-block";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Showcasae () {
+    const [showCard, setShowCard] = useState(true);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setShowCard(prev => !prev);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
     const code = `import { Button } from "@nextui-org/react";
 import { useState } from "react";
 export default function DummyComponent() {
@@ -59,17 +73,80 @@ export default function DummyComponent() {
                         Copy paste the most trending components and use them in your websites without having to worry about styling and animations.    
                     </p>
                 </div>
-                <div className="flex w-full mt-20">
+                <div className="flex w-full mt-14">
                     <div className="relative">
                         <Keyboard />
                     </div>
-                    <div className="absolute right-10 top-255">
-                        <CodeBlock
-                            language="tsx"
-                            filename="DummyComponent.tsx"
-                            highlightLines={[9, 13, 14, 18]}
-                            code={code}
-                        />
+                    <div className="absolute right-10 top-250">
+                        <AnimatePresence mode="wait">
+                            {showCard ? (
+                                <motion.div
+                                    key="code-block"
+                                    initial={{ 
+                                        opacity: 0, 
+                                        y: -10,
+                                        filter: "blur(10px)"
+                                    }}
+                                    animate={{ 
+                                        opacity: 1, 
+                                        y: 0,
+                                        filter: "blur(0px)" 
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        y: -10,
+                                        filter: "blur(10px)"
+                                    }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    <CodeBlock
+                                        language="tsx"
+                                        filename="DummyComponent.tsx"
+                                        highlightLines={[9, 13, 14, 18]}
+                                        code={code}
+                                    /> 
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    key="card-stack"
+                                    initial={{ 
+                                        opacity: 0, 
+                                        y: -10,
+                                        filter: "blur(10px)"
+                                    }}
+                                    animate={{ 
+                                        opacity: 1, 
+                                        y: 0,
+                                        filter: "blur(0px)" 
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        y: -10,
+                                        filter: "blur(10px)"
+                                    }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    <div className="relative">
+                                        <div className="bg-gray-100 h-[520px] w-[600px] rounded-2xl relative shadow-lg shadow-neutral-200">
+                                            <div className="flex items-center h-8 bg-gray-50">
+                                                <div className="bg-red-400 h-4 w-4 rounded-full ml-2"></div>
+                                                <div className="bg-yellow-400 h-4 w-4 rounded-full ml-2"></div>
+                                                <div className="bg-green-400 h-4 w-4 rounded-full ml-2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="absolute top-30 left-35">
+                                        <CardStack items={CARDS} />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
                 </div>
                 
