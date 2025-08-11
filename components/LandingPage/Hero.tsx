@@ -4,7 +4,7 @@ import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
 import { Button } from "../ui/button";
 import { FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { CheckBox } from "../CustomComponents/checkBox";
+import { CheckBox } from "../CustomComponents/dynamic-checkbox";
 import { motion } from "motion/react";
 import DynamicScroll from "../CustomComponents/DynamicScroll";
 

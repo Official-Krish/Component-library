@@ -59,7 +59,7 @@ export default function Appbar() {
     }, [dispatch]);
 
     return (
-        <header className="sticky py-4 bg-neutral-100 border-b border-neutral-200">
+        <header className="sticky py-4 bg-[#ffffff] border-b border-neutral-200">
             <div className="flex items-center justify-between px-8">
                 <div className="flex items-center justify-between w-[680px]">
                     <div className="flex items-center">

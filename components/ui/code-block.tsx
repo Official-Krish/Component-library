@@ -8,6 +8,7 @@ type CodeBlockProps = {
   language: string;
   filename: string;
   highlightLines?: number[];
+  className?: string;
 } & (
   | {
       code: string;
@@ -30,6 +31,7 @@ export const CodeBlock = ({
   code,
   highlightLines = [],
   tabs = [],
+  className
 }: CodeBlockProps) => {
   const [copied, setCopied] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState(0);
@@ -54,7 +56,7 @@ export const CodeBlock = ({
     : highlightLines;
 
   return (
-    <div className="relative w-[600px] rounded-lg bg-zinc-900 p-4 font-mono text-sm h-[600px] overflow-y-auto">
+    <div className={`relative rounded-lg bg-zinc-900 p-4 font-mono text-sm overflow-y-auto ${className || "w-[600px] h-[600px]"}`}>
       <div className="flex flex-col gap-2">
         {tabsExist && (
           <div className="flex  overflow-x-auto">

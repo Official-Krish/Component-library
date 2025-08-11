@@ -1,5 +1,5 @@
 "use client";
-import { CARDS } from "@/app/constants";
+import { CARDS } from "@/constants";
 import { Keyboard } from "../CustomComponents/Keyboard";
 import { CardStack } from "../ui/card-stack";
 import { CodeBlock } from "../ui/code-block";

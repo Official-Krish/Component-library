@@ -41,7 +41,7 @@ export const CheckBox = () => {
         ));
     };
     return (
-        <div className="bg-white rounded-lg shadow-lg w-full h-full">
+        <div className="bg-white rounded-lg w-full h-full">
             <div className="flex items-center justify-center h-full">
                 <div>
                     {todos.map((todo) => (
