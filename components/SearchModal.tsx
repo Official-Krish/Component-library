@@ -3,25 +3,24 @@
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { closeSearchModal, openSearchModal } from "@/lib/features/searchModalSlice";
 import { CiSearch } from "react-icons/ci";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { RiTwitterXFill } from "react-icons/ri";
-import { X, Terminal, Palette, Wrench, Command } from 'lucide-react';
+import { X, Terminal, Palette, Wrench, Command, Circle } from 'lucide-react';
 import { AnimatePresence, motion } from "motion/react";
+import { COMPONENTS } from "@/constants/DetailedComponent";
+import { useRouter } from "next/navigation";
 
 export default function SearchModal() {
   const [searchQuery, setSearchQuery] = useState('');
   const isOpen = useAppSelector((state) => state.searchModal.isOpen);
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const installationItems = [
     { id: 1, title: 'Install Next.js', icon: Terminal },
     { id: 2, title: 'Install Tailwind CSS', icon: Palette },
     { id: 3, title: 'Add utilities', icon: Wrench },
     { id: 4, title: 'CLI', icon: Command },
   ];
-
-  const filteredItems = installationItems.filter(item =>
-    item.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -42,11 +41,19 @@ export default function SearchModal() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [dispatch, isOpen]);
 
+  const filteredItems = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+    return COMPONENTS.filter(item =>
+      item.name.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
   return (
     <AnimatePresence mode="wait">
       {isOpen && (
         <motion.div 
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto"
           initial={{
             opacity: 0,
             y: -50,
@@ -82,7 +89,7 @@ export default function SearchModal() {
           y: -50,
         }}
         transition={{ duration: 0.2, ease: 'easeInOut' }}
-        className="relative w-full max-w-2xl mx-4 bg-white rounded-2xl shadow-2xl"
+        className="relative w-full max-w-2xl mx-4 bg-white rounded-2xl shadow-2xl pb-4"
       >
         <div className="flex items-center px-4 py-3 border-b border-gray-100">
               <CiSearch className="w-5 h-5 text-gray-400 mr-3" />
@@ -119,29 +126,57 @@ export default function SearchModal() {
 
                   {/* Divider */}
                   <div className="border-t border-gray-100"></div>
+                
+
+                  {/* Installation section */}
+                  <div className="px-4 py-3">
+                    <h3 className="text-sm font-medium text-gray-500 mb-3">Installation</h3>
+                    <div className="space-y-1">
+                      {installationItems.map((item) => {
+                        const IconComponent = item.icon;
+                        return (
+                          <div
+                            key={item.id}
+                            className="flex items-center p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                          >
+                            <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center mr-3">
+                              <IconComponent className="w-4 h-4 text-gray-600" />
+                            </div>
+                            <span className="text-gray-900">{item.title}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </>
               )}
 
-              {/* Installation section */}
-              <div className="px-4 py-3">
-                <h3 className="text-sm font-medium text-gray-500 mb-3">Installation</h3>
-                <div className="space-y-1">
-                  {filteredItems.map((item) => {
-                    const IconComponent = item.icon;
-                    return (
-                      <div
-                        key={item.id}
-                        className="flex items-center p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                      >
-                        <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center mr-3">
-                          <IconComponent className="w-4 h-4 text-gray-600" />
+              {searchQuery && (
+                <>
+                  <div className="px-4 py-3">
+                    <h3 className="text-sm font-medium text-gray-500 mb-3">Search Results for "{searchQuery}"</h3>
+                  </div>
+
+                  {filteredItems.length > 0 && (
+                    <div className="space-y-1 pl-5">  
+                      {filteredItems.map((item) => (
+                        <div
+                          key={item.id}
+                          className="flex items-center p-2 rounded-lg hover:bg-gray-50 cursor-pointer 
+                          transition-colors"
+                          onClick={() => {
+                            dispatch(closeSearchModal());
+                            router.push(`/component/${item.id}`);
+                          }}
+                        >
+                          <Circle className="w-4 h-4 text-gray-600 mr-3" />
+                          <span className="text-gray-900">{item.name}</span>
                         </div>
-                        <span className="text-gray-900">{item.title}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
 
               {/* All Components section */}
               {!searchQuery && (
@@ -149,6 +184,21 @@ export default function SearchModal() {
                   <div className="border-t border-gray-100"></div>
                   <div className="px-4 py-3">
                     <h3 className="text-sm font-medium text-gray-500">All Components</h3>
+                  </div>
+                  <div className="space-y-1 pl-5">
+                    {COMPONENTS.map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex items-center p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                        onClick={() => {
+                          dispatch(closeSearchModal());
+                          router.push(`/component/${item.id}`);
+                        }}
+                      >
+                        <Circle className="w-4 h-4 text-gray-600 mr-3" />
+                        <span className="text-gray-900">{item.name}</span>
+                      </div>
+                    ))}
                   </div>
                 </>
               )}

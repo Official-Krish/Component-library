@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import {
     FaGithub,
     FaLinkedin,
@@ -37,7 +38,7 @@ const defaultSocials: SocialLink[] = [
 ];
 
 export const Footer: React.FC<FooterProps> = ({
-    brand = { name: 'UI', href: '/' },
+    brand = { name: 'Magic UI', href: '/' },
     nav = [
         { label: 'Features', href: '#' },
         { label: 'Pricing', href: '#' },
@@ -68,13 +69,11 @@ export const Footer: React.FC<FooterProps> = ({
                             className="inline-flex items-center gap-3 group"
                             aria-label={brand.name}
                         >
-                            {brand.logoSrc && (
-                                <img
-                                    src={brand.logoSrc}
-                                    alt=""
-                                    className="h-10 w-10 rounded-xl border border-gray-200 bg-white object-cover shadow-sm transition group-hover:scale-105"
-                                />
-                            )}
+                            <img
+                                src="MUI.jpeg"
+                                alt="Logo"
+                                className="h-10 w-10 rounded-full object-cover shadow-sm transition group-hover:scale-105"
+                            />
                             <span className="text-xl font-semibold tracking-tight text-gray-900">
                                 {brand.name}
                             </span>
