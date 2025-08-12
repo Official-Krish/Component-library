@@ -61,11 +61,16 @@ export default function Component() {
                     <Code search={search} />
                 )}
 
-                <Installation />
+                <Installation id={search}/>
 
-                <p className="text-gray-700 my-8">
-                    {component ? component.description : "No description available."}
-                </p>
+                <div className="my-8 rounded-xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
+                    <div className="flex items-start">
+                        <span aria-hidden="true" className="mr-4 mt-1 h-8 w-1 rounded-full bg-gradient-to-b from-blue-500 to-indigo-500" />
+                        <p className="text-gray-700 text-base md:text-lg leading-relaxed whitespace-pre-line">
+                            {component ? component.description : "No description available."}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

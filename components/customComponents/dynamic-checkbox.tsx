@@ -8,33 +8,14 @@ interface Todo {
     checked: boolean;
 }
 
-const Todos = [
-    {
-        id: 1,
-        title: "Learn React",
-        checked: false
-    },
-    {
-        id: 2,
-        title: "Learn Motion",
-        checked: true
-    },
-    {
-        id: 3,
-        title: "Build a project",
-        checked: false
-    }
-]
-
 const baseT: Transition = {
     ease: "easeInOut",
     duration: 0.4,
 };
 const baseDelay = 0.2;
 
-export const CheckBox = () => {
-    const [todos, setTodos] = useState(Todos);
-
+export const CheckBox = ({ Todos }: { Todos: Todo[]}) => {
+    const [todos, setTodos] = useState<Todo[]>(Todos);
     const onToggle = (id: number) => {
         setTodos(todos.map(todo =>
             todo.id === id ? { ...todo, checked: !todo.checked } : todo

@@ -1,9 +1,12 @@
 import { COMPONENTS } from "@/constants/DetailedComponent";
 import { Component } from "@/types";
+import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { motion } from "motion/react";
 
 export default function Sidebar() {
     const components: Component[] = COMPONENTS;
+    const router = useRouter();
 
     const grouped = useMemo(() => {
         const g: Record<string, Component[]> = {};
@@ -33,13 +36,24 @@ export default function Sidebar() {
                         </div>
                         <ul className="px-3 pb-2 space-y-1">
                             {items.map(item => (
-                                <li
+                                <motion.li
                                     key={item.id}
-                                    className="text-[13px] rounded px-2 py-1 cursor-pointer transition text-neutral-700"
+                                    className="text-[14px] rounded px-2 py-1 cursor-pointer transition text-neutral-700 hover:text-neutral-900"
                                     title={item.description || ""}
+                                    whileHover={{
+                                        x: 8,
+                                        scale: 1.06,
+                                    }}
+                                    transition={{
+                                        duration: 0.05,
+                                        ease: "linear",
+                                    }}
+                                    onClick={() => {
+                                        router.push(`/component/${item.id}`);
+                                    }}
                                 >
                                     {item.name}
-                                </li>
+                                </motion.li>
                             ))}
                         </ul>
                     </div>

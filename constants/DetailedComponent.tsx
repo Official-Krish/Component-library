@@ -1,4 +1,24 @@
 import { CheckBox } from "@/components/CustomComponents/dynamic-checkbox";
+import DynamicScroll from "@/components/CustomComponents/DynamicScroll";
+import { Keyboard } from "@/components/CustomComponents/Keyboard";
+
+const Todos = [
+    {
+        id: 1,
+        title: "Learn React",
+        checked: false
+    },
+    {
+        id: 2,
+        title: "Learn Motion",
+        checked: true
+    },
+    {
+        id: 3,
+        title: "Build a project",
+        checked: false
+    }
+]
 
 export const COMPONENTS = [
     {
@@ -7,7 +27,26 @@ export const COMPONENTS = [
         tags: ["checkbox", "form", "input", "accessibility"],
         Category: "Form",
         shortDescription: "A highly customizable and accessible checkbox component designed for modern web applications. It supports dynamic state changes, including indeterminate states, and provides a smooth user experience with motion-enhanced transitions.",
-        description: "An accessible, motion-enhanced checkbox built for modern UI libraries. It animates state changes (unchecked → indeterminate → checked) using subtle scale, opacity and stroke-dash transitions for instant affordance without distraction. The check glyph (or custom icon) is drawn with a springy path reveal while the container background and border smoothly morph to their active tokens. Supports controlled and uncontrolled usage, indeterminate tri-state, disabled, read-only, invalid, and loading states. Keyboard interactions (Space / Enter) mirror native behavior; focus ring is token-driven and respects prefers-reduced-motion (automatically swaps to non-animated state changes). Theme-ready via design tokens (size, radius, border width, color roles) with built‑in size variants (sm, md, lg) and density scaling. Dark mode and high-contrast safe (minimum contrast enforced). RTL-compatible (no directional assumptions). Emits granular callbacks (onChange, onIndeterminateChange) and forwards refs for form libraries. Motion layer is isolated so animations can be disabled per instance. Minimal DOM footprint, no layout shift, and tree-shakeable. Designed for composability: label slot, description / hint / error regions, optional tooltip trigger, and icon override. Ideal for dynamic lists and preference panels needing responsive visual feedback while preserving performance and accessibility. Provides ARIA-compliant semantics with proper role=checkbox and aria-checked tri-state handling, auto-generates accessible name from associated label, and exposes optional aria-describedby linkage for hint or error text. Fully SSR-safe with hydration-stable markup; no layout thrash (avoids measuring) and 60fps animations under typical load. Tested across modern evergreen browsers and gracefully degrades in legacy ones (falls back to instant state changes). Integrates cleanly with React Hook Form, Formik, and uncontrolled HTML forms. Offers deterministic test IDs and stable DOM structure for reliable unit and E2E testing. Includes optional reduced-interaction mode for low-power or battery saver contexts and supports color-blind friendly contrast tokens. Code-splittable and side-effect free for tree shaking. Supports icon override, custom state render, analytics hooks, and intent-based styling (success / warning / error) via data-* attributes.",
-        Code: <CheckBox />
+        description: "An accessible, motion-enhanced checkbox built for modern UI libraries. It animates state changes (unchecked → indeterminate → checked) using subtle scale, opacity and stroke-dash transitions for instant affordance without distraction. The check glyph (or custom icon) is drawn with a springy path reveal while the container background and border smoothly morph to their active tokens.",
+        Code: <CheckBox Todos={Todos}/>
+    },
+
+    {
+        id: "keyboard",
+        name: "Keyboard",
+        tags: ["Landing Page", "Hero Section", "Animation"],
+        Category: "Landing Page",
+        shortDescription: "A visually striking keyboard animation that showcases the power of motion design in web development. This component features a dynamic keyboard animation that responds to user interactions, creating an engaging and interactive experience.",
+        description: "A visually striking keyboard animation that showcases the power of motion design in web development. This component features a dynamic keyboard animation that responds to user interactions, creating an engaging and interactive experience. The animation is designed to be smooth and responsive, providing instant feedback to user actions while maintaining a polished and professional appearance.",
+        Code: <div className="flex justify-center items-center h-full"><Keyboard /></div>
+    },
+    {
+        id: "dynamic-scroll",
+        name: "Dynamic Scroll",
+        tags: ["scroll", "animation", "motion"],
+        Category: "Animation",
+        shortDescription: "A dynamic scroll animation that enhances the user experience by providing smooth and visually appealing transitions as users scroll through content. This component is designed to be lightweight and performant, ensuring a seamless experience across devices.",
+        description: "A dynamic scroll animation that enhances the user experience by providing smooth and visually appealing transitions as users scroll through content. This component is designed to be lightweight and performant, ensuring a seamless experience across devices. It utilizes modern web technologies to create fluid animations that respond to user interactions, making it ideal for creating engaging and interactive web applications.",
+        Code: <div className="flex justify-center items-center h-full"><DynamicScroll/></div>
     }
 ];

@@ -1,11 +1,11 @@
 import { ScriptCopyBtn } from "@/components/ui/script-copy-button";
 
-export default function Installation() {
+export default function Installation({ id }: { id: string }) {
     const customCommandMap = {
-        npm: "npx shadcn@latest add https://ui.krishdev.xyz/r/dynamic-scroll.json",
-        yarn: "yarn shadcn@latest add https://ui.krishdev.xyz/r/dynamic-scroll.json",
-        pnpm: "pnpm dlx shadcn@latest add https://ui.krishdev.xyz/r/dynamic-scroll.json",
-        bun: "bunx shadcn@latest add https://ui.krishdev.xyz/r/dynamic-scroll.json",
+        npm: `npx shadcn@latest add https://ui.krishdev.xyz/r/${id}.json`,
+        yarn: `yarn shadcn@latest add https://ui.krishdev.xyz/r/${id}.json`,
+        pnpm: `pnpm dlx shadcn@latest add https://ui.krishdev.xyz/r/${id}.json`,
+        bun: `bunx shadcn@latest add https://ui.krishdev.xyz/r/${id}.json`,
     };
     return (
         <div className="max-w-6xl mx-auto mt-10">
