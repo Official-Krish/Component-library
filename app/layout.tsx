@@ -6,6 +6,7 @@ import Appbar from "@/components/Appbar";
 import { Footer } from "@/components/Footer";
 import { Providers } from "@/lib/providers";
 import SearchModal from "@/components/SearchModal";
+import { unstable_ViewTransition as ViewTransition } from 'react'
 
 const geistSans = Inter({
   variable: "--font-geist-sans",
@@ -24,19 +25,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} antialiased`}
-      >
-        <Providers>
-          <Container>
-            <Appbar />
-            {children}
-            <Footer/>
-          </Container>
-          <SearchModal />
-        </Providers>
-      </body>
-    </html>
+    <ViewTransition>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} antialiased`}
+        >
+          <Providers>
+            <Container>
+              <Appbar />
+              {children}
+              <Footer/>
+            </Container>
+            <SearchModal />
+          </Providers>
+        </body>
+      </html>
+    </ViewTransition>
   );
 }

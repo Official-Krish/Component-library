@@ -5,9 +5,11 @@ import { CiSearch } from "react-icons/ci";
 import { useAppDispatch } from "@/lib/hooks";
 import { openSearchModal } from "@/lib/features/searchModalSlice";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Appbar() {
     const dispatch = useAppDispatch();
+    const router = useRouter();
     const navContent = [
         {
             name: "Componets",
@@ -62,9 +64,9 @@ export default function Appbar() {
         <header className="sticky py-4 bg-[#ffffff] border-b border-neutral-200">
             <div className="flex items-center justify-between px-8">
                 <div className="flex items-center justify-between w-[680px]">
-                    <div className="flex items-center">
-                        <img src="https://ui.aceternity.com/logo.png" alt="Logo" className="w-7 h-7 mr-2" />
-                        <h1 className="text-neutral-800 font-bold text-2xl">Component UI</h1>
+                    <div className="flex items-center cursor-pointer" onClick={() => router.push('/')}>
+                        <img src="MUI.jpeg" alt="Logo" className="w-7 h-7 mr-2" />
+                        <h1 className="text-neutral-800 font-bold text-2xl">Magic UI</h1>
                     </div>
                     <div>
                         {navContent.map((item, index) => (

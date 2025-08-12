@@ -22,7 +22,7 @@ export default function Sidebar() {
     }, [components]);
 
     return (
-        <div className="sticky w-[240px] h-screen overflow-auto">
+        <div className="sticky w-[240px] min-h-screen overflow-auto">
             <div className="flex items-center justify-center pt-20 pb-2">
                 <h1 className="mb-1 rounded-md px-2 py-1 text-lg font-semibold text-black">
                     Components

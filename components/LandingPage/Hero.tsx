@@ -28,23 +28,41 @@ export default function Hero() {
         }
     ]
 
+    const Todos = [
+        {
+            id: 1,
+            title: "Learn React",
+            checked: false
+        },
+        {
+            id: 2,
+            title: "Learn Motion",
+            checked: true
+        },
+        {
+            id: 3,
+            title: "Build a project",
+            checked: false
+        }
+    ]
+
     const items = [
         {
             title: "Custom Checkbox",
             description: "A stylish checkbox component for your forms.",
-            header: <CheckBox />,
+            header: <CheckBox Todos={Todos}/>,
             className: "md:col-span-2",   
         },
         {
             title: "Dynamic Scroll",
             description: "Create smooth scrolling effects with ease.",
-            header: <CheckBox />,
+            header: <CheckBox Todos={Todos}/>,
             className: "md:col-span-1",
         },
         {
             title: "The Art of Design",
             description: "Discover the beauty of thoughtful and functional design.",
-            header: <CheckBox />,
+            header: <CheckBox Todos={Todos}/>,
             className: "md:col-span-1",
         },
         {
