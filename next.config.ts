@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['aceternity.com', 'pro.aceternity.com'],
+    domains: ['assets.krishdev.xyz', 'pro.aceternity.com', "aceternity.com"],
   },
   experimental: {
     viewTransition: true,

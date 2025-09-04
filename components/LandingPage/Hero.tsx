@@ -7,8 +7,10 @@ import { RiTailwindCssFill } from "react-icons/ri";
 import { CheckBox } from "../CustomComponents/dynamic-checkbox";
 import { motion } from "motion/react";
 import DynamicScroll from "../CustomComponents/DynamicScroll";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
+    const router = useRouter();
     const icons = [
         {
             name: "Next.js",
@@ -93,7 +95,9 @@ export default function Hero() {
                     Copy paste the most trending components and use them in your websites without having to worry about styling and animations.
                 </h2>
                 <div className="flex space-x-4">
-                    <Button className="bg-neutral-900 text-white hover:bg-neutral-800 cursor-pointer py-7 rounded-xl px-8 hover:shadow-2xl transition duration-200">
+                    <Button className="bg-neutral-900 text-white hover:bg-neutral-800 cursor-pointer py-7 rounded-xl px-8 hover:shadow-2xl transition duration-200"
+                        onClick={() => router.push("/component/keyboard")}
+                    >
                         Browse Components
                     </Button>
                     <Button className="bg-neutral-100 text-black hover:shadow-md cursor-pointer px-8 py-7 rounded-xl border border-neutral-200">

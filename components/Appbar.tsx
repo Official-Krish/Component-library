@@ -6,14 +6,15 @@ import { useAppDispatch } from "@/lib/hooks";
 import { openSearchModal } from "@/lib/features/searchModalSlice";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Appbar() {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const navContent = [
         {
-            name: "Componets",
-            href: "/components"
+            name: "Components",
+            href: "/component/keyboard"
         },
         {
             name: "Templates",
@@ -65,7 +66,7 @@ export default function Appbar() {
             <div className="flex items-center justify-between px-8">
                 <div className="flex items-center justify-between w-[680px]">
                     <div className="flex items-center cursor-pointer" onClick={() => router.push('/')}>
-                        <img src="MUI.jpeg" alt="Logo" className="w-7 h-7 mr-2" />
+                        <Image src="https://assets.krishdev.xyz/MUI/MUI.jpeg" alt="Logo" width="40" height="40" className="w-7 h-7 mr-2" />
                         <h1 className="text-neutral-800 font-bold text-2xl">Magic UI</h1>
                     </div>
                     <div>

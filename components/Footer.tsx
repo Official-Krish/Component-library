@@ -69,11 +69,7 @@ export const Footer: React.FC<FooterProps> = ({
                             className="inline-flex items-center gap-3 group"
                             aria-label={brand.name}
                         >
-                            <img
-                                src="MUI.jpeg"
-                                alt="Logo"
-                                className="h-10 w-10 rounded-full object-cover shadow-sm transition group-hover:scale-105"
-                            />
+                            <Image src="https://assets.krishdev.xyz/MUI/MUI.jpeg" alt="Logo" width="40" height="40" className="w-7 h-7 mr-2" />
                             <span className="text-xl font-semibold tracking-tight text-gray-900">
                                 {brand.name}
                             </span>
